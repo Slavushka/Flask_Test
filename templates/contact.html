@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts</title>
+  <style>
+    .error {color: darkorange;}
+    .success {color: springgreen;}
+  </style>
+</head>
+
+<body>
+  {% for cat, msg in get_flashed_messages(True) %}
+  <div class="flash {{ cat }}">{{ msg }}</div>
+  {% endfor %}
+
+  <form class="form-contact" action="/contact" method="post">
+    <p><label>Имя: </label><input type="text" name="username" value=""></p>
+    <p><label>Email: </label><input type="text" name="email" value=""></p>
+    <p><label>Сообщение: </label></p>
+    <p><textarea name="message" rows="7" cols="40"></textarea></p>
+    <p><input type="submit" value="Отправить"></p>
+  </form>
+
+  <h2>Страница контактов</h2>
+</body>
+
+</html>

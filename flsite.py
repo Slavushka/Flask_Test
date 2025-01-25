@@ -1,11 +1,19 @@
-from flask import Flask, render_template, url_for, request, session, redirect
+from flask import Flask, render_template, url_for, request, session, redirect, abort
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "abrakadabra64423424635634"
 
 
 @app.route("/index")
 def index():
     return render_template("index.html")
+
+
+@app.route("/profile/<username>")
+def profile(username):
+    if "userlogged" not in session or session["userlogged"] != username:
+        abort(401)
+    return f"<h1>Профиль пользователя: {username}</h1>"
 
 
 @app.route("/login", methods=["POST", "GET"])
